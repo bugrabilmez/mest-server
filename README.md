@@ -1,1 +1,1 @@
-# mest-server
+# Start server application
