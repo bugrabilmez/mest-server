@@ -4,6 +4,8 @@
   "description": "Mest Server",
   "main": "index.js",
   "scripts": {
+    "start": "node ./bin/www.js",
+    "build": "webpack --config webpack.dev.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,12 +28,13 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
-    "dot-env": "0.0.1",
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "jsonwebtoken": "^8.1.0",
     "mongodb": "^3.0.0-rc0",
     "mongoose": "^4.13.7",
+    "open-browser-webpack-plugin": "0.0.5",
     "pug": "^2.0.0-rc.4",
     "serve-favicon": "^2.4.5",
     "webpack": "^3.10.0"
@@ -41,6 +44,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "eslint": "^4.13.1",
+    "eslint-config-google": "^0.9.1",
     "nodemon": "^1.13.3"
   }
 }
