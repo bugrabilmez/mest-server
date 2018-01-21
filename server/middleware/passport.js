@@ -17,8 +17,8 @@ const _signOut = () => {
 
 };
 
-const _check = () => {
-
+const _authenticate = (req, res, next) => {
+    passport.authenticate(req, res, next);
 };
 
 const _register = () => {
@@ -33,7 +33,7 @@ const _initialize = () => {
 module.exports = {
     signIn: _signIn,
     signOut: _signOut,
-    check: _check,
+    authenticate: _authenticate,
     register: _register,
     initialize: _initialize
 }

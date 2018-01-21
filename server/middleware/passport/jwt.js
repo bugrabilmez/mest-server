@@ -21,7 +21,7 @@ const ExtractJwt = passport_jwt.ExtractJwt;
 const JwtStrategy = passport_jwt.Strategy;
 
 const jwtOptions = {
-    jwtFromRequest: ExtractJwt.fromHeader(),
+    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt'),
     secretOrKey: authentication.secretOrKey
 };
 
@@ -42,15 +42,13 @@ const _initialize = () => {
     return passport.initialize();
 };
 
-const _authenticate = () => {
-    return passport.authenticate(authentication.getEnv, { session: false });
+const _authenticate = (req, res, next) => {
+    passport.authenticate(authentication.authenticationType.jwt, { session: false })(req, res, next);
 };
 
 const _signIn = (req, res, next) => {
-    if (req.body.name && req.body.password) {
-        const name = req.body.name;
-        const password = req.body.password;
-    }
+    const name = req.body.name;
+    const password = req.body.password;
     // usually this would be a database call:
     var user = users[_.findIndex(users, { name: name })];
     if (!user) {
