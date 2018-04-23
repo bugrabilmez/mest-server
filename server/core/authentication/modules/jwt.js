@@ -2,7 +2,8 @@ const _ = require('lodash');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const passport_jwt = require('passport-jwt');
-const authentication = require('../../../common/constants/authentication');
+const configurationFactory = require('../../configuration/factory').instance();
+const constants = require('../../common/contants');
 
 const users = [
     {
@@ -19,10 +20,11 @@ const users = [
 
 const ExtractJwt = passport_jwt.ExtractJwt;
 const JwtStrategy = passport_jwt.Strategy;
+const secretOrKey = configurationFactory.getValue(constants.env.authenticationSecretKey);
 
 const jwtOptions = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt'),
-    secretOrKey: authentication.secretOrKey
+    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme(constants.authentication.types.jwt),
+    secretOrKey: secretOrKey.value
 };
 
 const strategy = new JwtStrategy(jwtOptions, (payload, done) => {
@@ -43,7 +45,7 @@ const _initialize = () => {
 };
 
 const _authenticate = (req, res, next) => {
-    passport.authenticate(authentication.authenticationType.jwt, { session: false })(req, res, next);
+    passport.authenticate(constants.authentication.types.jwt, { session: false })(req, res, next);
 };
 
 const _signIn = (req, res, next) => {
