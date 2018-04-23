@@ -3,7 +3,7 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const passport = require('./server/middleware/passport');
+const authenticationFactory = require('./server/core/authentication/factory').instance();
 
 const index = require('./server/routes/index');
 
@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(passport.initialize());
+app.use(authenticationFactory.initialize());
 
 app.use('/', index);
 
