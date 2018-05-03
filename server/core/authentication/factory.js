@@ -1,6 +1,6 @@
 const jwt = require('./modules/jwt');
 const configurationFactory = require('../configuration/factory').instance();
-const constants = require('../common/contants');
+const constants = require('../common/constants');
 
 const factory = () => {
     const _passport = () => {

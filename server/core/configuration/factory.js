@@ -1,25 +1,26 @@
+const Data = require('./class/data');
+
 const factory = () => {
-
-    // Returned Type
-    let returnData = {
-        found: false,
-        key: null,
-        value: null,
-        type: null
-    };
-
+    
     // Return value according to key.
-    const _getValue = (key) => {
-        returnData.key = key;
+    const _getValue = (key) => {  
+     
         if (process.env[key] !== null && process.env[key] !== undefined) {
-            returnData.found = true;
-            returnData.value = process.env[key];            
-        }
-        return returnData;
+            return new Data(true, key, process.env[key], null)         
+        } 
+        
+        return new Data(false, key, null, null);
+
+    }
+
+    // Get environment
+    const _getEnv = () => {
+        return new Data(true, 'NODE_ENV', process.env.NODE_ENV, null)  
     }
 
     return {
-        getValue: _getValue
+        getValue: _getValue,
+        getEnv: _getEnv
     }
 }
 
