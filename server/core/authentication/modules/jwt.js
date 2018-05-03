@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const passport_jwt = require('passport-jwt');
 const configurationFactory = require('../../configuration/factory').instance();
-const constants = require('../../common/contants');
+const constants = require('../../common/constants');
 
 const users = [
     {

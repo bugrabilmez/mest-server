@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const authenticationFactory = require('./server/core/authentication/factory').instance();
+const ormFactory = require('./server/core/orm/factory').instance();
 
 const index = require('./server/routes/index');
 
@@ -22,6 +23,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(authenticationFactory.initialize());
 
 app.use('/', index);
+
+// this will sync db for starting.
+app.locals.db = ormFactory.start();
 
 /* // catch 404 and forward to error handler
 app.use(function (req, res, next) {
