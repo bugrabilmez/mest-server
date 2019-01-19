@@ -8,11 +8,13 @@ const constants = require('../../common/constants');
 const users = [
     {
         id: 1,
+        identityNumber: 13151153808,
         name: 'admin',
         password: 'admin'
     },
     {
         id: 2,
+        identityNumber: 13151153808,
         name: 'test',
         password: 'test'
     }
