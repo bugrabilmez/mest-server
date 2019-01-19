@@ -13,6 +13,7 @@ index.post('/login', authenticationFactory.signIn, (req, res, next) => {
 });
 
 index.get('/testLogin', authenticationFactory.authenticate, (req, res, next) => {
+    throw new Error('test');
     res.json({ message: "Success! You can not see this without a token" });
 });
 

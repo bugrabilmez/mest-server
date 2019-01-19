@@ -1,9 +1,11 @@
 'use strict';
 const options = require('./options');
+const base = require('./base');
 
 module.exports = (sequelize, DataTypes) => {
-    const model = sequelize.define('SysException', {
-        module: {
+
+    let columns = {
+        moduleName: {
             type: DataTypes.STRING,
             allowNull: true
         },
@@ -14,13 +16,12 @@ module.exports = (sequelize, DataTypes) => {
         stackTrace: {
             type: DataTypes.TEXT,
             allowNull: true
-        },
-        identityNumber: {
-            type: DataTypes.BIGINT(11),
-            allowNull: true,
-            validate: { len: [11] }
-        }    
-    }, options('SysException'));
+        }        
+    };
+
+    columns = Object.assign(columns, base(DataTypes));
+
+    const model = sequelize.define('SysException', columns, options('SysException'));
 
     return model;
 }
