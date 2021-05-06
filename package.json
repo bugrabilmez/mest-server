@@ -34,7 +34,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "jsonwebtoken": "^8.1.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.21",
     "mongodb": "^3.0.0-rc0",
     "mongoose": "^4.13.7",
     "open-browser-webpack-plugin": "0.0.5",
